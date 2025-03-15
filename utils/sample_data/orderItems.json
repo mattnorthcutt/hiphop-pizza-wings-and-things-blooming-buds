@@ -1,0 +1,18 @@
+{
+  "-OKqdXYNk0o43fZf-YNF": {
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fhealthyrecipesblogs.com%2Fbuffalo-chicken-wings%2F&psig=AOvVaw3oW3BH90u78ylId6xVm5jY&ust=1742145045555000&source=images&opi=89978449",
+    "firebaseKey": "-OKqdXYNk0o43fZf-YNF",
+    "price": "$6.99",
+    "name": "BBQ Wings",
+    "sale": false,
+    "uid": ""
+  },
+  "-MiBsfuTafbEQ7eAULxV": {
+  "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thecookierookie.com%2Fmeat-lovers-pizza%2F&psig=AOvVaw3IOZjySIKDrHpxlX4CkqdZ&ust=1742145574283000&source=images&opi=89978449",
+  "firebaseKey": "-MiBsfuTafbEQ7eAULxV",
+  "price": "8.99",
+  "name": "All Meat Pizza",
+  "sale": true,
+  "uid": ""
+  }
+}
