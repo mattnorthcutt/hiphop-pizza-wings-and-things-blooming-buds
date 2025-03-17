@@ -2,8 +2,8 @@ import client from '../utils/sample_data/client';
 
 const endpoint = client.databaseURL;
 
-const getOrderItems = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/orderItems.json"`, {
+const getOrderItems = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/orderItems.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -73,7 +73,22 @@ const updateOrderItem = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const orderItemsOnSale = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/orderItems.json?orderBy="uid"&equalTo="${uid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const onSale = Object.values(data).filter((item) => item.sale);
+      resolve(onSale);
+    })
+    .catch(reject);
+});
+
 export {
-  getOrderItems, createOrderItem, deleteOrderItem, getSingleOrderItem, updateOrderItem
+  getOrderItems, createOrderItem, deleteOrderItem, getSingleOrderItem, updateOrderItem, orderItemsOnSale
 
 };
