@@ -3,7 +3,7 @@ import renderToDOM from '../../utils/renderToDom';
 const domBuilder = () => {
   const domString = `
   <div id="navbar"></div>
-  <div id="main-containter">
+  <div id="main-container">
     <div id="form-container"></div>
     <div id="store"></div>
     <div id="view"></div>

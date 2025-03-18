@@ -1,7 +1,8 @@
-import { createOrder, updateOrder } from '../api/orderData';
+import { createOrder, updateOrder, getOrders } from '../api/orderData';
+import { showOrderCard } from '../pages/orderCard';
 
 const formEvents = (user) => {
-  document.querySelector('#main-containter').addEventListener('submit', (e) => {
+  document.querySelector('#main-container').addEventListener('submit', (e) => {
     e.preventDefault();
 
     if (e.target.id.includes('submit-order')) {
@@ -17,8 +18,9 @@ const formEvents = (user) => {
       };
       createOrder(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
+
         updateOrder(patchPayload).then(() => {
-          // getOrders().then(showOrder);
+          getOrders(user.uid).then(showOrderCard);
         });
       });
     }
