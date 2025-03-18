@@ -3,9 +3,12 @@ import renderToDOM from '../../utils/renderToDom';
 const domBuilder = () => {
   const domString = `
   <div id="navbar"></div>
-  <div id="store"></div>
-  <div id="view"></div>
-  <div id="form-container"></div>
+  <div id="main-containter">
+    <div id="form-container"></div>
+    <div id="store"></div>
+    <div id="view"></div>
+    <div id="add-button"></div>
+  </div>
   `;
 
   renderToDOM('#app', domString);
