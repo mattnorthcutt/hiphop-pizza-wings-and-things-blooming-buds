@@ -8,8 +8,8 @@ const emptyOrderItems = () => {
 
 const showOrderItems = (array) => {
   clearDom();
-  const btnString = '<button class="btn btn-success btn-lg mb-4" id="add-book-btn">Add A Book</button>';
-  renderToDOM('#add-button', btnString);
+  const btnString = '<button class="btn btn-success btn-lg mb-4" id="add-item-btn">Add An Item</button>';
+  renderToDOM('#view', btnString);
 
   let domString = '';
   array.forEach((item) => {
