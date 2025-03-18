@@ -26,7 +26,7 @@ const showOrderCard = (array) => {
 </div>
     `;
   });
-  renderToDOM('#store', domString);
+  renderToDOM('#view', domString);
 };
 
 export { showOrderCard, emptyOrders };
