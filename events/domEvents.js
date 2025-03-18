@@ -1,6 +1,8 @@
 import addOrderForm from '../components/forms/addOrderForm';
-import { getOrders } from '../api/orderData';
+import { deleteOrder, getOrders, getSingleOrder } from '../api/orderData';
 import { showOrderCard } from '../pages/orderCard';
+import getOrderDetails from '../api/mergedData';
+import viewOrder from '../pages/viewOrder';
 
 const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -10,6 +12,24 @@ const domEvents = (user) => {
 
     if (e.target.id.includes('home-view')) {
       getOrders(user.uid).then((orders) => showOrderCard(orders));
+    }
+    if (e.target.id.includes('edit-order-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getSingleOrder(firebaseKey).then((orderObj) => addOrderForm(orderObj));
+    }
+    if (e.target.id.includes('delete-order')) {
+      if (window.confirm('Want to delete?')) {
+        console.warn('CLICKED DELETE Order', e.target.id);
+        const [, firebaseKey] = e.target.id.split('--');
+        deleteOrder(firebaseKey).then(() => {
+          getOrders().then(showOrderCard);
+        });
+      }
+    }
+    if (e.target.id.includes('view-order-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      getOrderDetails(firebaseKey).then(viewOrder);
     }
   });
 };
