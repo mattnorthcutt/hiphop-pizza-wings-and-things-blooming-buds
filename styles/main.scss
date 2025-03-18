@@ -7,3 +7,14 @@ body {
   text-align: center;
   margin-top: 100px;
 }
+
+#form-container {
+  width: 60%;
+  margin: auto;
+  justify-content: center;
+  color: white;
+
+  #formModal {
+    color: black;
+  }
+}

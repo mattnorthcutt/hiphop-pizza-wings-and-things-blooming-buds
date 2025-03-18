@@ -4,6 +4,7 @@
     "firebaseKey": "oYe1NpTHMbYbxLJJtdZnWivNsfi2",
     "status": "Closed",
     "phoneNum": "(645)456-4566",
+    "email": "johnstam@stam.com",
     "orderType": "Phone",
     "orderItem_id": "-OKqdXYNk0o43fZf-YNF",
     "uid": ""
@@ -13,6 +14,7 @@
     "firebaseKey": "-OKqs3ckMn2CE95JsEWV",
     "status": "Open",
     "phoneNum": "(123)456-7890",
+    "email": "moefreeks@free.com",
     "orderType": "Person",
     "orderItem_id": "-MiBsfuTafbEQ7eAULxV",
     "uid": ""
