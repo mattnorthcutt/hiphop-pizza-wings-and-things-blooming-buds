@@ -23,21 +23,22 @@ const domEvents = (user) => {
 
     if (e.target.id.includes('add-item-btn')) {
       addOrderItemForm({}, user);
-      if (e.target.id.includes('edit-order-btn')) {
-        const [, firebaseKey] = e.target.id.split('--');
+    }
 
-        getSingleOrder(firebaseKey).then((orderObj) => addOrderForm(orderObj));
-      }
-      if (e.target.id.includes('delete-order')) {
-        const [, firebaseKey] = e.target.id.split('--');
-        deleteOrder(firebaseKey).then(() => {
-          getOrders().then(showOrderCard);
-        });
-      }
-      if (e.target.id.includes('view-order-btn')) {
-        const [, firebaseKey] = e.target.id.split('--');
-        getOrderDetails(firebaseKey).then(viewOrder);
-      }
+    if (e.target.id.includes('edit-order-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getSingleOrder(firebaseKey).then((orderObj) => addOrderForm(orderObj));
+    }
+    if (e.target.id.includes('delete-order')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      deleteOrder(firebaseKey).then(() => {
+        getOrders(user.uid).then(showOrderCard);
+      });
+    }
+    if (e.target.id.includes('view-order-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      getOrderDetails(firebaseKey).then(viewOrder);
     }
   });
 };

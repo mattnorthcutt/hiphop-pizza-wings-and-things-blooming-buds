@@ -14,6 +14,7 @@ const formEvents = (user) => {
         phone: document.querySelector('#phone').value,
         email: document.querySelector('#email').value,
         orderType: document.querySelector('#orderType').value,
+        orderItem_id: [],
         status: 'Open',
         firebaseKey,
         uid: user.uid
