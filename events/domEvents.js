@@ -1,7 +1,7 @@
 import addOrderForm from '../components/forms/addOrderForm';
 import { deleteOrder, getOrders, getSingleOrder } from '../api/orderData';
 import { showOrderCard } from '../pages/orderCard';
-import { getOrderItems } from '../api/itemData';
+import { deleteOrderItem, getOrderItems, getSingleOrderItem } from '../api/itemData';
 import { showOrderItems } from '../pages/orderItemCard';
 import addOrderItemForm from '../components/forms/addOrderItemForm';
 import getOrderDetails from '../api/mergedData';
@@ -28,17 +28,31 @@ const domEvents = (user) => {
     if (e.target.id.includes('edit-order-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
 
-      getSingleOrder(firebaseKey).then((orderObj) => addOrderForm(orderObj));
+      getSingleOrder(firebaseKey).then((orderObj) => addOrderForm(orderObj, user));
     }
+
     if (e.target.id.includes('delete-order')) {
       const [, firebaseKey] = e.target.id.split('--');
       deleteOrder(firebaseKey).then(() => {
         getOrders(user.uid).then(showOrderCard);
       });
     }
+
     if (e.target.id.includes('view-order-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
       getOrderDetails(firebaseKey).then(viewOrder);
+    }
+
+    if (e.target.id.includes('edit-orderItem-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      getSingleOrderItem(firebaseKey).then((orderItemObj) => addOrderItemForm(orderItemObj, user));
+    }
+
+    if (e.target.id.includes('delete-orderItem-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      deleteOrderItem(firebaseKey).then(() => {
+        getOrderItems(user.uid).then(showOrderItems);
+      });
     }
   });
 };
