@@ -11,7 +11,7 @@ const formEvents = (user) => {
       const [, firebaseKey] = e.target.id.split('--');
       const payload = {
         name: document.querySelector('#name').value,
-        phone: document.querySelector('#phone').value,
+        phoneNum: document.querySelector('#phone').value,
         email: document.querySelector('#email').value,
         orderType: document.querySelector('#orderType').value,
         orderItem_id: [],
@@ -25,6 +25,24 @@ const formEvents = (user) => {
         updateOrder(patchPayload).then(() => {
           getOrders(user.uid).then(showOrderCard);
         });
+      });
+    }
+
+    if (e.target.id.includes('update-order')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      const payload = {
+        name: document.querySelector('#name').value,
+        phoneNum: document.querySelector('#phone').value,
+        email: document.querySelector('#email').value,
+        orderType: document.querySelector('#orderType').value,
+        orderItem_id: [],
+        status: 'Open',
+        firebaseKey,
+        uid: user.uid
+      };
+
+      updateOrder(payload).then(() => {
+        getOrders(user.uid).then(showOrderCard);
       });
     }
 
@@ -44,6 +62,22 @@ const formEvents = (user) => {
         updateOrderItem(patchPayload).then(() => {
           getOrderItems(user.uid).then(showOrderItems);
         });
+      });
+    }
+
+    if (e.target.id.includes('update-item')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      const payload = {
+        name: document.querySelector('#name').value,
+        price: document.querySelector('#price').value,
+        email: document.querySelector('#image').value,
+        sale: document.querySelector('#sale').checked,
+        firebaseKey,
+        uid: user.uid
+      };
+
+      updateOrderItem(payload).then(() => {
+        getOrderItems(user.uid).then(showOrderItems);
       });
     }
   });
