@@ -6,6 +6,24 @@ body {
   background-color: rgb(24, 24, 24);
   text-align: center;
   margin-top: 100px;
+  height: 100%;
+}
+
+#login-container {
+  background-color: #5c0000; /* Fallback color */
+  background-image: url("https://cdn.dribbble.com/users/1648123/screenshots/3521480/media/023ab5abe6ca7b8f1802da959f54f007.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 120vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 #form-container {
@@ -37,4 +55,26 @@ body {
     margin: 0 auto;
     text-align: center;
   }
+}
+
+#itemsForOrder {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  #subTotal-container {
+    font-size: 100px;
+    color: rgb(0, 155, 0)
+  }
+}
+
+#menuItems {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+#store {
+  display: flex;
+  justify-content: space-around;
 }

@@ -13,20 +13,36 @@ const showOrderCard = (array) => {
 
   let domString = '';
   array.forEach((item) => {
-    domString += `
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">${item.name}</h5>
-    <p class="card-text">${item.orderType}</p>
-    <p class="card-text bold">${item.status ? `<span class="badge badge-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Status</span> ${item.status}` : `$${item.status}`}</p>
-    <p class="card-text">${item.phoneNum}</p>
-    <p class="card-text">${item.email}</p>
-     <i class="btn btn-success fas fa-eye" id="view-order-btn--${item.firebaseKey}"></i>
-            <i id="edit-order-btn--${item.firebaseKey}" class="fas fa-edit btn btn-info"></i>
-            <i id="delete-order-btn--${item.firebaseKey}" class="btn btn-danger fas fa-trash-alt"></i>
-  </div>
-</div>
-    `;
+    if (item.open === true) {
+      domString += `
+      <div class="card" style="width: 16rem;">
+        <div class="card-body">
+          <h5 class="card-title">${item.name}</h5>
+          <p class="card-text">${item.orderType}</p>
+          <p class="card-text card-order-status">Order Status: <span style="color: green">Open</span></p>
+          <p class="card-text">${item.phoneNum}</p>
+          <p class="card-text">${item.email}</p>
+          <i class="btn fas" style="color: blue;" id="view-order-btn--${item.firebaseKey}">View</i>
+          <i id="edit-order-btn--${item.firebaseKey}" class="fas btn" style="color: blue;">Edit</i>
+          <i id="delete-order-btn--${item.firebaseKey}" class="btn fas" style="color: blue;">Delete</i>
+        </div>
+      </div>
+      `;
+    } else {
+      domString += `
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">${item.name}</h5>
+          <p class="card-text">${item.orderType}</p>
+          <p class="card-text card-order-status">Order Status: <span style="color: green">Close</span></p>
+          <p class="card-text">${item.phoneNum}</p>
+          <p class="card-text">${item.email}</p>
+          <i class="btn btn-success fas fa-eye" id="view-order-btn--${item.firebaseKey}"></i>
+          <i id="edit-order-btn--${item.firebaseKey}" class="fas fa-edit btn btn-info"></i>
+        </div>
+      </div>
+      `;
+    }
   });
   renderToDOM('#store', domString);
 };

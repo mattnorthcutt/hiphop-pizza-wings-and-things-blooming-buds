@@ -88,7 +88,19 @@ const orderItemsOnSale = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getItemsByOrderId = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/orderItems.json?orderBy="orderId"&equalTo="${firebaseKey}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 export {
-  getOrderItems, createOrderItem, deleteOrderItem, getSingleOrderItem, updateOrderItem, orderItemsOnSale
+  getOrderItems, createOrderItem, deleteOrderItem, getSingleOrderItem, updateOrderItem, orderItemsOnSale, getItemsByOrderId
 
 };
