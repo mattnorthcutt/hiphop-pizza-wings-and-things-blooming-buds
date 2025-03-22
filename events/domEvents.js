@@ -4,14 +4,13 @@ import { showOrderCard } from '../pages/orderCard';
 import {
   deleteOrderItem,
   getItemsByOrderId,
-  getOrderItems,
   getSingleOrderItem
 } from '../api/itemData';
 import { showOrderItems } from '../pages/orderItemCard';
 import addOrderItemForm from '../components/forms/addOrderItemForm';
 import { emptyItemsOnOrder, showItemsOnOrder } from '../pages/viewItemsOnOrder';
 import { addItemOnOrderForm, updateItemOnOrderForm } from '../components/forms/addItemOnOrderForm';
-import { getMenuItems } from '../api/menuData';
+import { deleteMenuItem, getMenuItems, getSingleMenuItem } from '../api/menuData';
 
 const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -55,15 +54,15 @@ const domEvents = (user) => {
       });
     }
 
-    if (e.target.id.includes('edit-orderItem-btn')) {
+    if (e.target.id.includes('edit-itemOrder-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
-      getSingleOrderItem(firebaseKey).then((orderItemObj) => addOrderItemForm(orderItemObj, user));
+      getSingleMenuItem(firebaseKey).then((menuItemObj) => addOrderItemForm(menuItemObj, user));
     }
 
-    if (e.target.id.includes('delete-orderItem-btn')) {
+    if (e.target.id.includes('delete-itemOrder-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
-      deleteOrderItem(firebaseKey).then(() => {
-        getOrderItems(user.uid).then(showOrderItems);
+      deleteMenuItem(firebaseKey).then(() => {
+        getMenuItems(user.uid).then(showOrderItems);
       });
     }
 
