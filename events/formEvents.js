@@ -1,7 +1,15 @@
-import { createOrderItem, getOrderItems, updateOrderItem } from '../api/itemData';
+import {
+  createOrderItem,
+  getItemsByOrderId,
+  getOrderItems,
+  getSingleOrderItem,
+  updateOrderItem
+} from '../api/itemData';
+import { getMenuItems, createMenuItems, updateMenuItems } from '../api/menuData';
 import { createOrder, updateOrder, getOrders } from '../api/orderData';
 import { showOrderCard } from '../pages/orderCard';
 import { showOrderItems } from '../pages/orderItemCard';
+import { showItemsOnOrder } from '../pages/viewItemsOnOrder';
 
 const formEvents = (user) => {
   document.querySelector('#main-container').addEventListener('submit', (e) => {
@@ -14,8 +22,7 @@ const formEvents = (user) => {
         phoneNum: document.querySelector('#phone').value,
         email: document.querySelector('#email').value,
         orderType: document.querySelector('#orderType').value,
-        orderItem_id: document.querySelector('#orderItem_id').value,
-        status: 'Open',
+        open: true,
         firebaseKey,
         uid: user.uid
       };
@@ -35,8 +42,7 @@ const formEvents = (user) => {
         phoneNum: document.querySelector('#phone').value,
         email: document.querySelector('#email').value,
         orderType: document.querySelector('#orderType').value,
-        orderItem_id: document.querySelector('#orderItem_id').value,
-        status: 'Open',
+        open: true,
         firebaseKey,
         uid: user.uid
       };
@@ -51,16 +57,15 @@ const formEvents = (user) => {
       const payload = {
         name: document.querySelector('#name').value,
         price: document.querySelector('#price').value,
-        email: document.querySelector('#image').value,
         sale: document.querySelector('#sale').checked,
         firebaseKey,
         uid: user.uid
       };
-      createOrderItem(payload).then(({ name }) => {
+      createMenuItems(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
 
-        updateOrderItem(patchPayload).then(() => {
-          getOrderItems(user.uid).then(showOrderItems);
+        updateMenuItems(patchPayload).then(() => {
+          getMenuItems(user.uid).then(showOrderItems);
         });
       });
     }
@@ -70,7 +75,6 @@ const formEvents = (user) => {
       const payload = {
         name: document.querySelector('#name').value,
         price: document.querySelector('#price').value,
-        email: document.querySelector('#image').value,
         sale: document.querySelector('#sale').checked,
         firebaseKey,
         uid: user.uid
@@ -78,6 +82,45 @@ const formEvents = (user) => {
 
       updateOrderItem(payload).then(() => {
         getOrderItems(user.uid).then(showOrderItems);
+      });
+    }
+
+    if (e.target.id.includes('add-item-on-order')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      const payload = {
+        name: document.querySelector('#name').value,
+        price: document.querySelector('#price').value,
+        sale: document.querySelector('#sale').checked,
+        uid: user.uid
+      };
+      createOrderItem(payload).then(({ name }) => {
+        const patchPayload = { orderId: firebaseKey, firebaseKey: name };
+
+        updateOrderItem(patchPayload).then(() => {
+          getItemsByOrderId(firebaseKey).then((items) => {
+            showItemsOnOrder(items, patchPayload.orderId);
+          });
+        });
+      });
+    }
+
+    if (e.target.id.includes('update-item-on-order')) {
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getSingleOrderItem(firebaseKey).then((item) => {
+        const payload = {
+          name: document.querySelector('#name').value,
+          price: document.querySelector('#price').value,
+          sale: document.querySelector('#sale').checked,
+          orderId: item.orderId,
+          firebaseKey: item.firebaseKey,
+          uid: user.uid
+        };
+        updateOrderItem(payload).then(() => {
+          getItemsByOrderId(payload.orderId).then((items) => {
+            showItemsOnOrder(items, payload.orderId);
+          });
+        });
       });
     }
   });

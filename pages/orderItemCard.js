@@ -3,31 +3,36 @@ import renderToDOM from '../utils/renderToDom';
 
 const emptyOrderItems = () => {
   const domString = '<h1>No Items</h1>';
-  renderToDOM('#store', domString);
+  renderToDOM('#menuItems', domString);
 };
 
 const showOrderItems = (array) => {
   clearDom();
-  const btnString = '<button class="btn btn-success btn-lg mb-4" id="add-item-btn">Add An Item</button>';
-  renderToDOM('#view', btnString);
+
+  const btnString = `
+    <div id="menu-page-add-item" style="margin-bottom: 10px; width: 100px; ">
+      <button class="add-item-btn"style="width: 100px;"id="add-item-btn">Add Item</button>
+    </div>`;
 
   let domString = '';
+
   array.forEach((item) => {
-    domString += `\
-    <div class="card" style="width: 18rem;">
-  <img src="${item.image}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <p class="card-text">${item.name}.</p>
-    <p class="card-text bold">$${item.price}</p>
-    <div id='card-btns'>
-     <i id="edit-orderItem-btn--${item.firebaseKey}" class="fas fa-edit btn btn-info">Edit</i>
-            <i id="delete-orderItem-btn--${item.firebaseKey}" class="btn btn-danger fas fa-trash-alt">Delete</i>
-            </div>
-  </div>
-</div>
+    domString += `
+    <div class="card orderItem-card" style="background-image: ${item.image}; width: 700px; margin-bottom: 10px;">
+        <div class="card-body">
+        <img src=${item.image}>
+            <h3 class="card-title card-item-name">${item.name}</h3>
+            <p>${item.sale ? `<span class="badge bg-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> 
+            $${item.price}` : `$${item.price}`}</p>
+            <i class="btn" style="color: rgb(0, 110, 236)" id="edit-item-on-order-btn--${item.firebaseKey}">Edit item</i>
+            <i class="btn" style="color: red" id="delete-item-on-order-btn--${item.firebaseKey}">Delete item</i>
+        </div>
+    </div>
     `;
   });
-  renderToDOM('#store', domString);
+
+  const tgthrString = (domString + btnString);
+  renderToDOM('#menuItems', tgthrString);
 };
 
 export { emptyOrderItems, showOrderItems };
