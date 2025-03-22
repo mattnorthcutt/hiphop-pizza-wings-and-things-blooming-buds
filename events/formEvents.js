@@ -1,7 +1,6 @@
 import {
   createOrderItem,
   getItemsByOrderId,
-  getOrderItems,
   getSingleOrderItem,
   updateOrderItem
 } from '../api/itemData';
@@ -80,8 +79,8 @@ const formEvents = (user) => {
         uid: user.uid
       };
 
-      updateOrderItem(payload).then(() => {
-        getOrderItems(user.uid).then(showOrderItems);
+      updateMenuItems(payload).then(() => {
+        getMenuItems(user.uid).then(showOrderItems);
       });
     }
 
