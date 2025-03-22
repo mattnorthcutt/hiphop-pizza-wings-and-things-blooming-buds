@@ -46,4 +46,34 @@ const createMenuItems = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getMenuItems, updateMenuItems, createMenuItems };
+const getSingleMenuItem = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/menuItems/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const deleteMenuItem = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/menuItems/${firebaseKey}.json`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((books) => resolve(books))
+    .catch(reject);
+});
+
+export {
+  getMenuItems,
+  updateMenuItems,
+  createMenuItems,
+  getSingleMenuItem,
+  deleteMenuItem
+};
