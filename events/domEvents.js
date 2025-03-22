@@ -10,7 +10,7 @@ import viewOrder from '../pages/viewOrder';
 const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     if (e.target.id.includes('home-create')) {
-      addOrderForm({}, user);
+      addOrderForm(user.uid);
     }
 
     if (e.target.id.includes('home-view')) {

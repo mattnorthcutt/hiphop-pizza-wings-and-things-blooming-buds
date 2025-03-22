@@ -14,7 +14,7 @@ const formEvents = (user) => {
         phoneNum: document.querySelector('#phone').value,
         email: document.querySelector('#email').value,
         orderType: document.querySelector('#orderType').value,
-        orderItem_id: [],
+        orderItem_id: document.querySelector('#orderItem_id').value,
         status: 'Open',
         firebaseKey,
         uid: user.uid
@@ -35,7 +35,7 @@ const formEvents = (user) => {
         phoneNum: document.querySelector('#phone').value,
         email: document.querySelector('#email').value,
         orderType: document.querySelector('#orderType').value,
-        orderItem_id: [],
+        orderItem_id: document.querySelector('#orderItem_id').value,
         status: 'Open',
         firebaseKey,
         uid: user.uid

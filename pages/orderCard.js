@@ -17,13 +17,13 @@ const showOrderCard = (array) => {
     <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">${item.name}</h5>
-    <p class="card-text">${item.orderType}</p>
-    <p class="card-text bold">${item.status ? `<span class="badge badge-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Status</span> ${item.status}` : `$${item.status}`}</p>
+    <h6 class="card-text">${item.orderType}</h6>
+    <p class="card-text bold">${item.status}</p>
     <p class="card-text">${item.phoneNum}</p>
     <p class="card-text">${item.email}</p>
-     <i class="btn btn-success fas fa-eye" id="view-order-btn--${item.firebaseKey}"></i>
-            <i id="edit-order-btn--${item.firebaseKey}" class="fas fa-edit btn btn-info"></i>
-            <i id="delete-order-btn--${item.firebaseKey}" class="btn btn-danger fas fa-trash-alt"></i>
+     <i class="btn btn-success fas fa-eye" id="view-order-btn--${item.firebaseKey}">Details</i>
+       <i id="edit-order-btn--${item.firebaseKey}" class="fas fa-edit btn btn-info">Edit</i>
+      <i id="delete-order-btn--${item.firebaseKey}" class="btn btn-danger fas fa-trash-alt">Delete</i>
   </div>
 </div>
     `;
