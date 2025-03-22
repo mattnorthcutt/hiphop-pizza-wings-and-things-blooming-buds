@@ -36,10 +36,7 @@ body {
     color: black;
   }
 }
-.glogin {
-  background-color: rgb(0, 155, 0);
-  color: white;
-}
+
 #login-form-container {
   background-color: brown;
 }
@@ -77,4 +74,23 @@ body {
 #store {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.VM {
+  background-color:#c41700;
+}
+
+.VO {
+  background-color:#1e8b30;
+  color:rgb(88, 100, 112)
+}
+
+.CaO {
+  background-color:#058cad;
+}
+
+.VR {
+  background-color:#e9c10e;
+
 }
