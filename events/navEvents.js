@@ -1,7 +1,7 @@
 import { signOut } from '../utils/auth';
 import addOrderForm from '../components/forms/addOrderForm';
 import home from '../pages/home';
-import { getOrders } from '../api/orderData';
+import { getOrders, searchOrders } from '../api/orderData';
 import { showOrderCard } from '../pages/orderCard';
 
 const navEvents = (user) => {
@@ -15,6 +15,12 @@ const navEvents = (user) => {
   });
   document.querySelector('#all-orders').addEventListener('click', () => {
     getOrders(user.uid).then((orders) => showOrderCard(orders));
+  });
+  document.querySelector('#search').addEventListener('keyup', (e) => {
+    if (e.keyCode === 13) {
+      searchOrders(user);
+      document.querySelector('#search').value = '';
+    }
   });
 };
 

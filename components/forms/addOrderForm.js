@@ -10,7 +10,7 @@ const addOrderForm = (obj = {}) => {
         <select id="orderType" style="width: 600px; text-align: center; border-radius: 5px; margin-bottom: 10px;" class="mt-3" required>
           <option value="select">Select an Order Type</option>
           <option value="Phone">Phone</option>
-          <option value="inPerson">In-Person</option>
+          <option value="In-Person">In-Person</option>
         </select>
       </div>
       <div class="form-group">

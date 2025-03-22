@@ -1,3 +1,4 @@
+import { showOrderCard } from '../pages/orderCard';
 import client from '../utils/sample_data/client';
 
 const endpoint = client.databaseURL;
@@ -70,10 +71,32 @@ const createOrder = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getItemsForOrder = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/orders.json?orderBy="orderItem_id"&equalTo="${firebaseKey}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
+const searchOrders = (user) => {
+  const searchInput = document.querySelector('#search').value.toLowerCase();
+  getOrders(user.uid).then((orders) => {
+    const oneOrder = orders.filter((order) => order.name.toLowerCase().includes(searchInput));
+    showOrderCard(oneOrder);
+  });
+};
+
 export {
   getOrders,
   deleteOrder,
   getSingleOrder,
   updateOrder,
-  createOrder
+  createOrder,
+  getItemsForOrder,
+  searchOrders
 };
