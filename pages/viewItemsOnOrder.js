@@ -7,7 +7,7 @@ const emptyItemsOnOrder = (firebaseKey) => {
 
   const domString = `
   <div id="addItemsForOrder">
-  <h1 style="color: white; font-size: 100px; margin-bottom: 250px;"id="nothing">No Items</h1>
+  <h1 style="color: white; margin-bottom: 25px;"id="nothing">No Items in Order</h1>
     <button class="add-item-for-order-btn" id="add-item-for-order-btn--${firebaseKey}">Add Item</button>
   </div>
   `;
