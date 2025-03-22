@@ -24,8 +24,8 @@ const showOrderItems = (array) => {
             <h3 class="card-title card-item-name">${item.name}</h3>
             <p>${item.sale ? `<span class="badge bg-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> 
             $${item.price}` : `$${item.price}`}</p>
-            <i class="btn" style="color: rgb(0, 110, 236)" id="edit-item-on-order-btn--${item.firebaseKey}">Edit item</i>
-            <i class="btn" style="color: red" id="delete-item-on-order-btn--${item.firebaseKey}">Delete item</i>
+            <i class="btn" style="color: rgb(0, 110, 236)" id="edit-itemOrder-btn--${item.firebaseKey}">Edit item</i>
+            <i class="btn" style="color: red" id="delete-itemOrder-btn--${item.firebaseKey}">Delete item</i>
         </div>
     </div>
     `;
