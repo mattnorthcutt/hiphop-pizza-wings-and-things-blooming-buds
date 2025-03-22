@@ -21,6 +21,8 @@ const addOrderForm = (obj = {}) => {
         <label style="color: slategrey; margin-top: 10px; margin-bottom: 5px;" for="phone">Customer Phone Number</label>
         <textarea class="form-control" style="height: 150px;" placeholder="Enter Phone Number" id="phone" >${obj.phoneNum || ''}</textarea>
       </div>
+      <div class="form-group" id="select-orderItem">
+      </div>
       <div class="form-group">
         <label style="color: slategrey; margin-top: 10px; margin-bottom: 5px;" for="phone">Customer Email</label>
         <textarea class="form-control" style="height: 150px;" placeholder="Enter Email" id="email" >${obj.email || ''}</textarea>

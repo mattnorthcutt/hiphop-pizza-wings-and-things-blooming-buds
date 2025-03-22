@@ -5,12 +5,10 @@ const emptyOrders = () => {
   const domString = '<h1>No Orders</h1>';
   renderToDOM('#store', domString);
 };
-
 const showOrderCard = (array) => {
   clearDom();
   // const btnString = '<button class="btn btn-success btn-lg mb-4" id="add-book-btn">Add A Book</button>';
   // renderToDOM('#add-button', btnString);
-
   let domString = '';
   array.forEach((item) => {
     if (item.open === true) {
@@ -39,6 +37,7 @@ const showOrderCard = (array) => {
           <p class="card-text">${item.email}</p>
           <i class="btn btn-success fas fa-eye" id="view-order-btn--${item.firebaseKey}"></i>
           <i id="edit-order-btn--${item.firebaseKey}" class="fas fa-edit btn btn-info"></i>
+          <i id="delete-order-btn--${item.firebaseKey}" class="fas fa-edit btn btn-info"></i>
         </div>
       </div>
       `;
@@ -46,5 +45,4 @@ const showOrderCard = (array) => {
   });
   renderToDOM('#store', domString);
 };
-
 export { showOrderCard, emptyOrders };
