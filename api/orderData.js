@@ -83,6 +83,42 @@ const getItemsForOrder = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getClosedOrders = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/orders.json?orderBy="uid"&equalTo="${uid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
+const getOpenOrders = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/orders.json?orderBy="uid"&equalTo="${uid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
 const searchOrders = (user) => {
   const searchInput = document.querySelector('#search').value.toLowerCase();
   getOrders(user.uid).then((orders) => {
@@ -98,5 +134,7 @@ export {
   updateOrder,
   createOrder,
   getItemsForOrder,
-  searchOrders
+  searchOrders,
+  getOpenOrders,
+  getClosedOrders
 };

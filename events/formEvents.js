@@ -84,6 +84,27 @@ const formEvents = (user) => {
       });
     }
 
+    if (e.target.id.includes('update-payment')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      getItemsByOrderId(firebaseKey).then((items) => {
+        let itemSubTotal = 0;
+        items.forEach((item) => {
+          itemSubTotal += Number(item.price);
+        });
+        const payload = {
+          payment_type: document.querySelector('#payment-type').value,
+          tip_amount: document.querySelector('#tip-amount').value,
+          open: false,
+          order_total: itemSubTotal,
+          date_close: Date.now(),
+          firebaseKey,
+        };
+        updateOrder(payload).then(() => {
+          getOrders().then(showOrderCard);
+        });
+      });
+    }
+
     if (e.target.id.includes('add-item-on-order')) {
       const [, firebaseKey] = e.target.id.split('--');
       const payload = {

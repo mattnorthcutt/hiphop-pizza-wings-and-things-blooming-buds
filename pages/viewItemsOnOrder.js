@@ -52,14 +52,14 @@ const showItemsOnOrder = (array, firebaseKey) => {
       </div>
       <div id="item-page-button-container">
         <button class="add-item-for-order-btn" id="add-item-for-order-btn--${firebaseKey}">Add Item</button>
-        <button class="go-to-payment-btn" id="go-to-payment-btn--${firebaseKey}">Go To Payment</button>
+        <button class="to-payment-btn" id="to-payment-btn--${firebaseKey}">Payment</button>
       </div>
     </div>
 `;
     } else {
       array.forEach((item) => {
         domString += `
-        <div class="card item-card">
+        <div style="width: 700px; margin-bottom: 10px;" class="card item-card">
           <div class="card-body">
             <h3 class="card-title card-item-name">${item.name}</h3>
             <p>${item.sale ? `<span class="badge bg-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> 

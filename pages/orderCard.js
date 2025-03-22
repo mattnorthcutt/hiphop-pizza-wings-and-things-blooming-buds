@@ -30,15 +30,16 @@ const showOrderCard = (array) => {
       `;
     } else {
       domString += `
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 16rem;">
         <div class="card-body">
           <h5 class="card-title">${item.name}</h5>
           <p class="card-text">${item.orderType}</p>
-          <p class="card-text card-order-status">Order Status: <span style="color: green">Close</span></p>
+          <p class="card-text card-order-status">Order Status: <span style="color: red;">Closed</span></p>
           <p class="card-text">${item.phoneNum}</p>
           <p class="card-text">${item.email}</p>
-          <i class="btn btn-success fas fa-eye" id="view-order-btn--${item.firebaseKey}"></i>
-          <i id="edit-order-btn--${item.firebaseKey}" class="fas fa-edit btn btn-info"></i>
+          <p class="card-text">${item.payment_type}</p>
+          <i class="btn fas" style="color: red;" id="view-order-btn--${item.firebaseKey}">View</i>
+          <i id="edit-order-btn--${item.firebaseKey}" class="fas btn" style="color: red;">Edit</i>
         </div>
       </div>
       `;

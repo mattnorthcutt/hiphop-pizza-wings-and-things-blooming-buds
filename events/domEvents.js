@@ -1,5 +1,10 @@
 import addOrderForm from '../components/forms/addOrderForm';
-import { deleteOrder, getOrders, getSingleOrder } from '../api/orderData';
+import {
+  deleteOrder,
+  getOpenOrders,
+  getOrders,
+  getSingleOrder
+} from '../api/orderData';
 import { showOrderCard } from '../pages/orderCard';
 import {
   deleteOrderItem,
@@ -11,6 +16,7 @@ import addOrderItemForm from '../components/forms/addOrderItemForm';
 import { emptyItemsOnOrder, showItemsOnOrder } from '../pages/viewItemsOnOrder';
 import { addItemOnOrderForm, updateItemOnOrderForm } from '../components/forms/addItemOnOrderForm';
 import { deleteMenuItem, getMenuItems, getSingleMenuItem } from '../api/menuData';
+import payForm from '../components/forms/addPaymentForm';
 
 const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -19,7 +25,7 @@ const domEvents = (user) => {
     }
 
     if (e.target.id.includes('home-view')) {
-      getOrders(user.uid).then((orders) => showOrderCard(orders));
+      getOpenOrders(user.uid).then((orders) => showOrderCard(orders));
     }
 
     if (e.target.id.includes('home-menu')) {
@@ -35,6 +41,10 @@ const domEvents = (user) => {
 
       getSingleOrder(firebaseKey).then((orderObj) => addOrderForm(orderObj, user));
     }
+
+    /* if (e.target.id.includes('close-order-btn')) {
+      getOrders(user.uid).then((orders) => showOrderCard(orders));
+    } */
 
     if (e.target.id.includes('view-order-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
@@ -52,6 +62,12 @@ const domEvents = (user) => {
       deleteOrder(firebaseKey).then(() => {
         getOrders(user.uid).then(showOrderCard);
       });
+    }
+
+    if (e.target.id.includes('to-payment-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      getSingleOrder(firebaseKey).then((orderObj) => payForm(orderObj));
+      getSingleOrder(firebaseKey).then(payForm);
     }
 
     if (e.target.id.includes('edit-itemOrder-btn')) {
