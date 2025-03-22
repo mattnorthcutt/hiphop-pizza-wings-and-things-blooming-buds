@@ -20,7 +20,6 @@ const showOrderItems = (array) => {
     domString += `
     <div class="card orderItem-card" style="background-image: ${item.image}; width: 700px; margin-bottom: 10px;">
         <div class="card-body">
-        <img src=${item.image}>
             <h3 class="card-title card-item-name">${item.name}</h3>
             <p>${item.sale ? `<span class="badge bg-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> 
             $${item.price}` : `$${item.price}`}</p>
